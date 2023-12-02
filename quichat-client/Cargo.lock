@@ -569,6 +569,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "quichat-datatypes"
+version = "0.1.0"
+dependencies = [
+ "chrono",
+ "rmp-serde",
+ "serde",
+]
+
+[[package]]
 name = "quinn"
 version = "0.10.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1187,6 +1196,7 @@ dependencies = [
  "chrono",
  "env_logger",
  "log",
+ "quichat-datatypes",
  "rmp-serde",
  "rustls",
  "serde",

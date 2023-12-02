@@ -2,8 +2,8 @@ use serde::{Serialize, Deserialize};
 use tokio::{io::AsyncReadExt, pin};
 use wtransport::{ClientConfig, Endpoint};
 use log::debug;
-mod modules;
-use modules::api_datatypes::*;
+
+use quichat_datatypes::api::api_response;
 
 
 #[tokio::main]
@@ -60,7 +60,7 @@ async fn handle_bi(tx: impl tokio::io::AsyncWrite, rx: impl tokio::io::AsyncRead
     
     while let Ok(num_read) = rx.read(&mut data).await {
         let packet_size = usize::from_ne_bytes(data[..8].try_into().unwrap());
-        let packet = rmp_serde::decode::from_slice::<api_response::ApiResponseType>(&data[8..8+packet_size as usize]).unwrap();
+        let packet = rmp_serde::decode::from_slice::<api_response::ResponseTypes>(&data[8..8+packet_size as usize]).unwrap();
         debug!("Received packet:\nTotal packet size: {}\nData size: {}\n{:?}", num_read, packet_size, packet);
     }
 
