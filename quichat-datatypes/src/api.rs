@@ -6,7 +6,7 @@ use serde::{Serialize, Deserialize};
 //
 
 /// The server will use the structs inside of the response module to reply to client requests
-pub mod api_response {
+pub mod res {
     use serde::{Serialize, Deserialize};
     // use super::client_datatypes;
     use super::super::client;
@@ -22,6 +22,7 @@ pub mod api_response {
         DeleteMessage(DeleteMessageResponse),
         /// Did we get the messages?
         GetMessages(GetMessagesResponse),
+        /// Pong (Do we need to reply to keep the connection open, or can we just drop the incoming ping request?)
         Ping
     }
 
@@ -79,7 +80,7 @@ pub mod api_response {
 }
 
 /// The client will use the structs inside of the request module to send requests to the server
-pub mod api_request {
+pub mod req {
     use serde::{Serialize, Deserialize};
 
     /// Version 1 API Request types
@@ -92,6 +93,7 @@ pub mod api_request {
         /// Try to delete a message (all we really need is the message ID)
         DeleteMessage(DeleteMessageRequest),
         GetMessages(GetMessagesRequest),
+        /// Ping request. This is sent regularly to keep the WebTransport connection alive
         Ping
     }
 
