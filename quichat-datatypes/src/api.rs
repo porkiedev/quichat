@@ -92,6 +92,7 @@ pub mod req {
         EditMessage(EditMessageRequest),
         /// Try to delete a message (all we really need is the message ID)
         DeleteMessage(DeleteMessageRequest),
+        /// Try to get some messages
         GetMessages(GetMessagesRequest),
         /// Ping request. This is sent regularly to keep the WebTransport connection alive
         Ping
